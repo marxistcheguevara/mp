@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<script>
+$(document).ready(function(){
+    $(".hide").click(function(){
+        $(this).parent("p").next("div").hide();
+    });
+    $(".show").click(function(){
+        $(this).parent("p").next("div").show();
+    });
+});
+</script>
+
+<h1>Müayinələr</h1>
+<hr>
+    <% @activities.each do |act| %>
+
+<p>Müayinə kodu: <%= Examination.find(act.examination_id).shortname%><%= "#{act.id}#{act.doctor_id}#{act.patient_id}#{act.created_at.to_s[0..9]}".split("-").join %>  <button class="hide">Bağla</button>
+<button class="show">Göstər</button></p>
+
+<div>
+<p>Müayinə elədi: <%= act.doctor.first_name %> <%= act.doctor.last_name %>
+<p>Müayinə olundu: <%= act.patient.first_name %> <%= act.patient.last_name %>
+<p>Xəstəxana: <%= act.hospital.name %> (<%= act.hospital.city.name %>)
+<p>Qeydlər: <%= act.notes %>
+<% if act.attachments %>
+<p>Əlavə: <%= act.attachments.split.length %> şəkil <div><%= image_tag(act.attachments)%></div>
+<% end %>
+<p>Tarix: <%= act.created_at.to_s[0..9]%>  Saat: <%= act.created_at.to_s[11..18]%>
+</div>
+<hr>
+
+      <% if current_doctor %>
+        <%= link_to 'Edit', edit_activity_path(activity) %>
+      <% end %>
+
+    <% end %>
+
+<br>

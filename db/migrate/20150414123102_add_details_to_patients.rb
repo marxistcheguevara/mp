@@ -1,0 +1,15 @@
+class AddDetailsToPatients < ActiveRecord::Migration
+  def change
+    #add_column :patients, :pin, :integer
+    #add_column :patients, :first_name, :string
+    #add_column :patients, :last_name, :string
+    add_column :patients, :gender, :integer
+    add_column :patients, :dob, :date 
+    add_column :patients, :address, :string
+    add_column :patients, :marital_status, :integer 
+    add_column :patients, :preofession, :string
+    add_column :patients, :phone, :string
+    add_column :patients, :mobile, :string
+    add_column :patients, :city_id, :integer
+  end
+end

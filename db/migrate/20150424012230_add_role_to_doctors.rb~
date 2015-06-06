@@ -1,0 +1,5 @@
+class AddRoleToDoctors < ActiveRecord::Migration
+  def change
+    add_column :doctors, :role, :integer
+  end
+end

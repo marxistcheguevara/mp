@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+
+<% @activities.each do |act| %>
+
+<p>Müayinə elədi: <%= act.doctor.first_name %><%= act.doctor.last_name %>
+<p>Müayinə olundu: <%= act.patient.first_name %><%= act.patient.last_name %>
+<p>XəstƏxana: <%= act.hospital.name %> (<%= act.hospital.city.name %>)
+<p>Qeydlər: <%= act.notes %>
+<% if attachments %>
+<p>Əlavə: <%= act.attachments %>
+<% end %>
+<p>Tarix: <%= act.created_at.to_s[0..9]%>  Saat: <%= act.created_at.to_s[11..18]%>
+<% if current_doctor %>
+<%= link_to 'Edit', edit_activity_path(@activity) %> |
+<% end %>
+
+<%= link_to 'Back', activities_path %>
